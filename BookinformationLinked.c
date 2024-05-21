@@ -1,33 +1,41 @@
 //基于链表的书籍管理系统
+//Based on Linked Structrue
 #include<stdio.h>
 #include <stdlib.h>
 
 //定义一个结点，包含书籍信息
+//Definition of A Node
+//It Has All Information of A Book
 typedef struct BookInformation{
-    char ISBN_Number[100];//书籍的ISBN号码
-    char Title[100];//书籍标题
-    double Price;//书籍价格
-    BookInformation *next;//下一本书的地址
+    char ISBN_Number[100];//书籍的ISBN号码  ISBN Number
+    char Title[100];//书籍标题  Title
+    double Price;//书籍价格  Price
+    BookInformation *next;//下一本书的地址  Next Node
 }BookInformation;
 
 //定义一个头结点
+//Definition of Head Node
 BookInformation *head = NULL;
 
 //新建一个结点,返回新结点的地址
+//Creat A New Node
 BookInformation* NewNode(){
     BookInformation *newbook = (BookInformation *)malloc(sizeof(BookInformation));
     //用malloc分配内存给newbook，分配失败会返回null，成功返回地址
     //malloc返回的地址是“void*”类型，它不限定指针指向的数据的类型，因此这里强制转换类型
+    //I Use Function "malloc" to Allocate Memory
     return newbook;
 }
 
 //初始化表
+//Initialization
 void InitList(){
     head = NULL;
     printf("初始化完毕\n");
 }
 
 //读取新书籍
+//Input New Book
 void AddBook(BookInformation *NewBook){
     //这里用尾插将新书加入列表
     NewBook->next = NULL;
@@ -48,6 +56,7 @@ void AddBook(BookInformation *NewBook){
 }
 
 //显示所有书籍信息
+//Show All Books
 void Display(){
     BookInformation *current = head;
     while(current != NULL){
@@ -58,6 +67,7 @@ void Display(){
 }
 
 //统计书籍数量
+//Count The Number of Books
 int Count(){
     BookInformation *current = head;
     int count = 0;
@@ -69,6 +79,7 @@ int Count(){
 }
 
 //计算平均价格
+//Calculate The Average price
 double Average(){
     double sum = 0,ave;
     BookInformation *current = head;
@@ -81,6 +92,7 @@ double Average(){
 }
 
 //根据平均价格修改书籍信息
+//Change Price Based On Average Price
 void ChangePrice(){
     double ave = Average();
     BookInformation *current = head;
@@ -94,6 +106,7 @@ void ChangePrice(){
 }
 
 //查询最高价格
+//Search The Highest Price
 double SearchHighest(){
     double max = 0;
     BookInformation *current = head;
@@ -129,6 +142,7 @@ void reverseDisplay(){
 }
 
 //新图书的入库
+//Make New Book Into Library
 void NewBook(){
     int newnumber;
     BookInformation *newbook = NewNode();
@@ -170,6 +184,7 @@ void NewBook(){
 }
 
 //旧图书出库
+//Make Book Out of Library
 void OldBook(){
     int oldnumber;
     printf("请输入目标图书的序号：\n");
@@ -205,6 +220,7 @@ void OldBook(){
 }
 
 //所有可选项
+//Users Have The Following Options
 void ChoicesDisplay(){
     printf("请选择你要进行的操作：\n");
     printf("【1】、创建一个图书表；\n");
