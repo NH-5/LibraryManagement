@@ -1,25 +1,29 @@
 //基于顺序表实现的图书管理系统
+//Based On Sequential Structure
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #define MAXSIZE 100
 
 //定义一个BookInformation的结构体,储存单本书籍的信息
+//Definition of A Book
 typedef struct{
-    char ISBN_Number[100];   //图书的ISBN号码
-    char NameOfBook[100];   //书籍的名称
-    double price = NULL;           //图书的价格;
+    char ISBN_Number[100];   //图书的ISBN号码  ISBN Number
+    char NameOfBook[100];   //书籍的名称  Title
+    double price = NULL;           //图书的价格  Price
 }BookInformation;
 
 BookInformation book[MAXSIZE];
 
 //初始化表
+//Initialization
 void InitList(BookInformation *book){
     //for(int i = 0; i < MAXSIZE; i++)
         //book[i].price = NULL;
 }
 
 //统计整个表中有多少本图书
+//Count the number of library
 int CountList(BookInformation *book){
     int count = 0;
     while(book[count].price != NULL){
@@ -29,6 +33,7 @@ int CountList(BookInformation *book){
 }
 
 //读取新书籍
+//Input book into library
 void AddBook(BookInformation *book){
     int i = 0;
     printf("请输入图书信息\n");
@@ -43,6 +48,7 @@ void AddBook(BookInformation *book){
 }
 
 //打印整个表，显示其中的信息
+//Print the whole list
 void DisplayList(BookInformation *book){
     if(book[0].price == NULL){
         printf("表中无图书\n");
@@ -53,6 +59,7 @@ void DisplayList(BookInformation *book){
 }
 
 //计算平均价格
+//Calculate average price
 double AverageOfBook(BookInformation *book){
     double sum = 0,average;
     for(int i = 0;book[i].price != NULL; i++){
@@ -63,6 +70,7 @@ double AverageOfBook(BookInformation *book){
 }
 
 //根据平均价格修改图书价格
+//Change price based on average price
 void ChangePrice(BookInformation *book){
     double average = AverageOfBook(book);
     for(int i = 0;book[i].price != NULL; i++){
@@ -110,6 +118,7 @@ void MaxPeiceBook(BookInformation *book){
 }
 
 //新图书入库
+//input new book
 void NewBook(BookInformation *book,int newnumber,BookInformation newbook){
     int i = 0,count = CountList(book);
     if(newnumber > count + 1 || newnumber <= 0){
@@ -125,6 +134,7 @@ void NewBook(BookInformation *book,int newnumber,BookInformation newbook){
 }
 
 //旧图书出库
+//output old book
 void OldBook(BookInformation *book,int oldnumber){
     int i = 0,count = CountList(book);
     if(oldnumber <= 0 || oldnumber > count){
